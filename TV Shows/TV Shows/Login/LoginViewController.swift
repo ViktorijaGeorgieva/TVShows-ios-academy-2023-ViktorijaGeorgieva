@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 class LoginViewController: UIViewController {
     @IBOutlet weak var label: UILabel!
@@ -22,7 +23,7 @@ class LoginViewController: UIViewController {
         button.layer.cornerRadius = 15
         label.font = UIFont.systemFont(ofSize: 30)
         activityIndicator.startAnimating()
-        
+        MBProgressHUD.showAdded(to: view, animated: true)
     }
     
     @IBAction func buttonActionHandler(_ sender: Any) {
