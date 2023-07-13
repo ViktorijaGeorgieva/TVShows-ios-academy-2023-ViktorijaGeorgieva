@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 final class LoginViewController: UIViewController {
     @IBOutlet private weak var numberOfTapsLabel: UILabel!
@@ -16,9 +17,9 @@ final class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        MBProgressHUD.showAdded(to: view, animated: true)
         setUpUI()
         animateSpinner()
-        
     }
     
     @IBAction private func incrementButtonPressed() {
