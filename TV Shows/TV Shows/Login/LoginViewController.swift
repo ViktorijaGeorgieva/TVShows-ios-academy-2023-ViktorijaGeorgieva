@@ -8,33 +8,40 @@
 import UIKit
 import MBProgressHUD
 
-class LoginViewController: UIViewController {
-    @IBOutlet weak var label: UILabel!
-    @IBOutlet weak var button: UIButton!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+final class LoginViewController: UIViewController {
+    @IBOutlet private weak var numberOfTapsLabel: UILabel!
+    @IBOutlet private weak var incrementButton: UIButton!
+    @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     
-    var numberOfTaps: Int = 0
+    private var numberOfTaps: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //Do any additional setup after loading the view.
-        view.backgroundColor = .systemMint
-        button.backgroundColor = .yellow
-        button.layer.cornerRadius = 15
-        label.font = UIFont.systemFont(ofSize: 30)
-        activityIndicator.startAnimating()
         MBProgressHUD.showAdded(to: view, animated: true)
+        setUpUI()
+        animateSpinner()
     }
     
-    @IBAction func buttonActionHandler(_ sender: Any) {
+    @IBAction private func incrementButtonPressed() {
         numberOfTaps += 1
-        label.text = String(numberOfTaps)
+        numberOfTapsLabel.text = String(numberOfTaps)
+        animateSpinner()
+    }
+    
+    private func setUpUI() {
+        view.backgroundColor = .systemMint
+        incrementButton.backgroundColor = .yellow
+        incrementButton.layer.cornerRadius = 15
+        numberOfTapsLabel.font = UIFont.systemFont(ofSize: 30)
+    }
+    
+    private func animateSpinner() {
         if activityIndicator.isAnimating {
             activityIndicator.stopAnimating()
-            button.setTitle("Start", for:  .normal)
+            incrementButton.setTitle("Start", for:  .normal)
         } else {
             activityIndicator.startAnimating()
-            button.setTitle("Stop", for: .normal)
+            incrementButton.setTitle("Stop", for: .normal)
         }
     }
 }

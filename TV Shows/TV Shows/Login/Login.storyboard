@@ -35,7 +35,7 @@
                                     <backgroundConfiguration key="background" image="tap"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="buttonActionHandler:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="nX2-c4-xEI"/>
+                                    <action selector="incrementButtonPressed" destination="Y6W-OH-hqX" eventType="touchUpInside" id="hLi-Lb-HJ9"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -44,8 +44,8 @@
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="NAZ-yO-3N6" id="P1T-9d-qK0"/>
-                        <outlet property="button" destination="Jeu-GM-oMT" id="PD4-Ge-9HC"/>
-                        <outlet property="label" destination="O6b-PJ-p29" id="Ma7-MA-g7G"/>
+                        <outlet property="incrementButton" destination="Jeu-GM-oMT" id="OnO-gN-GND"/>
+                        <outlet property="numberOfTapsLabel" destination="O6b-PJ-p29" id="c9Q-RZ-FDT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
