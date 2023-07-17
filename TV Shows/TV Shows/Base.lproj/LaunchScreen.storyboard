@@ -16,9 +16,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo-white" translatesAutoresizingMaskIntoConstraints="NO" id="1Gk-QQ-Eqo">
-                                <rect key="frame" x="114.85875706214301" y="407.38418079091548" width="162" height="37.999999999992724"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-white" translatesAutoresizingMaskIntoConstraints="NO" id="1Gk-QQ-Eqo">
+                                <rect key="frame" x="115.66666666666669" y="407" width="162" height="38"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash-top-left" translatesAutoresizingMaskIntoConstraints="NO" id="VHm-rB-N1V">
                                 <rect key="frame" x="0.0" y="59" width="140" height="100"/>
@@ -31,9 +30,11 @@
                         <color key="backgroundColor" red="0.32156862745098036" green="0.21176470588235294" blue="0.5490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="VHm-rB-N1V" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="AbX-cM-TrY"/>
+                            <constraint firstItem="1Gk-QQ-Eqo" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Bbw-Ef-RtQ"/>
                             <constraint firstItem="gwR-tU-tDM" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Gp6-Qz-cQs"/>
                             <constraint firstItem="gwR-tU-tDM" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="RJl-jY-Tta"/>
                             <constraint firstItem="VHm-rB-N1V" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="gSv-m7-34a"/>
+                            <constraint firstItem="1Gk-QQ-Eqo" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="vcc-29-3KX"/>
                         </constraints>
                     </view>
                 </viewController>
