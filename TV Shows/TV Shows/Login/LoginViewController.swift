@@ -18,24 +18,17 @@ final class LoginViewController: UIViewController {
     
     // MARK: - Properties
     
-    private var rememberMeIsSelected: Bool = false
-    
     // MARK: -Lifecycle methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpUI()
     }
     
     // MARK: -Actions
     
     @IBAction private func rememberMeCheckboxStateChanged(_ sender: UIButton) {
-        if rememberMeIsSelected {
-            rememberMeCheckboxButton.setImage(UIImage(named: "ic-checkbox-selected.pdf"), for: UIControl.State.normal)
-            rememberMeIsSelected = false
-        } else {
-            rememberMeCheckboxButton.setImage(UIImage(named: "ic-checkbox-unselected.pdf"), for: UIControl.State.normal)
-            rememberMeIsSelected = true
-        }
+        rememberMeCheckboxButton.isSelected.toggle()
     }
     
     @IBAction private func showPasswordStateChanged(_ sender: UIButton) {
@@ -49,4 +42,8 @@ final class LoginViewController: UIViewController {
     
     //MARK: -Utility methods
     
+    private func setUpUI() {
+        rememberMeCheckboxButton.setImage(UIImage(named: "ic-checkbox-selected.pdf"), for: UIControl.State.selected)
+        rememberMeCheckboxButton.setImage(UIImage(named: "ic-checkbox-unselected.pdf"), for: UIControl.State.normal)
+    }
 }
