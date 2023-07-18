@@ -8,17 +8,25 @@
 import UIKit
 
 final class LoginViewController: UIViewController {
+    
+    // MARK: - Outlets
+    
     @IBOutlet private weak var rememberMeCheckboxButton: UIButton!
     @IBOutlet private weak var showPasswordButton: UIButton!
-    
     @IBOutlet private weak var passwordTextField: UITextField!
+    
+    // MARK: - Properties
+    
     private var rememberMeIsSelected: Bool = false
     private var showPasswordIsSelected: Bool = true
+    
+    // MARK: -Lifecycle methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
+    // MARK: -Actions
     
     @IBAction private func rememberMeCheckboxStateChanged(_ sender: UIButton) {
         if rememberMeIsSelected {
@@ -41,4 +49,7 @@ final class LoginViewController: UIViewController {
             showPasswordButton.setImage(UIImage(named: "ic-visible.pdf"), for: UIControl.State.normal)
         }
     }
+    
+    //MARK: -Utility methods
+    
 }
