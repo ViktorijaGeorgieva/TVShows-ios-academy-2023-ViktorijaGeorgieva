@@ -14,11 +14,11 @@ final class LoginViewController: UIViewController {
     @IBOutlet private weak var rememberMeCheckboxButton: UIButton!
     @IBOutlet private weak var showPasswordButton: UIButton!
     @IBOutlet private weak var passwordTextField: UITextField!
+    @IBOutlet private weak var emailTextField: UITextField!
     
     // MARK: - Properties
     
     private var rememberMeIsSelected: Bool = false
-    private var showPasswordIsSelected: Bool = true
     
     // MARK: -Lifecycle methods
     
@@ -39,14 +39,11 @@ final class LoginViewController: UIViewController {
     }
     
     @IBAction private func showPasswordStateChanged(_ sender: UIButton) {
-        if showPasswordIsSelected {
-            passwordTextField.text = "1nf1num@/10st34m"
-            showPasswordIsSelected = false
-            showPasswordButton.setImage(UIImage(named: "ic-invisible.pdf"), for: UIControl.State.normal)
-        } else {
-            passwordTextField.text = "• • • • • • • • • • • • "
-            showPasswordIsSelected = true
+        passwordTextField.isSecureTextEntry.toggle()
+        if passwordTextField.isSecureTextEntry {
             showPasswordButton.setImage(UIImage(named: "ic-visible.pdf"), for: UIControl.State.normal)
+        } else {
+            showPasswordButton.setImage(UIImage(named: "ic-invisible.pdf"), for: UIControl.State.normal)
         }
     }
     

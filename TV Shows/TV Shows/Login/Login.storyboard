@@ -51,8 +51,8 @@
                                     <constraint firstAttribute="height" constant="20" id="ZGb-cg-67X"/>
                                 </constraints>
                             </imageView>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="ios.team@infinum.com" placeholder="ios.team@infinum.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pAA-q2-bCc">
-                                <rect key="frame" x="32" y="353" width="147" height="18.666666666666686"/>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pAA-q2-bCc">
+                                <rect key="frame" x="31.999999999999996" y="353" width="34.666666666666643" height="18.666666666666686"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -71,7 +71,7 @@
                                     <constraint firstAttribute="height" constant="1" id="ifB-vx-Q0h"/>
                                 </constraints>
                             </imageView>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="• • • • • • • • • • • • " placeholder="• • • • • • • • • • • • " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pac-Q8-aVr">
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pac-Q8-aVr">
                                 <rect key="frame" x="32" y="405" width="300" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="5nK-sw-JcL"/>
@@ -121,7 +121,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SI2-Jg-DQJ">
                                 <rect key="frame" x="325" y="400" width="48" height="38"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="ic-visible"/>
+                                <buttonConfiguration key="configuration" style="plain" image="ic-invisible"/>
                                 <connections>
                                     <action selector="showPasswordStateChanged:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Y9c-jm-mys"/>
                                 </connections>
@@ -161,6 +161,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="emailTextField" destination="pAA-q2-bCc" id="FD3-cp-llE"/>
                         <outlet property="passwordTextField" destination="Pac-Q8-aVr" id="17h-jD-a8f"/>
                         <outlet property="rememberMeCheckboxButton" destination="Jgb-3N-3Si" id="Sdg-Ac-cWp"/>
                         <outlet property="showPasswordButton" destination="SI2-Jg-DQJ" id="i3e-H6-SGw"/>
@@ -176,7 +177,7 @@
         <image name="Large Title" width="88" height="41"/>
         <image name="Line" width="350" height="1"/>
         <image name="ic-checkbox-selected" width="24" height="24"/>
-        <image name="ic-visible" width="24" height="24"/>
+        <image name="ic-invisible" width="24" height="24"/>
         <image name="logo-white" width="162" height="38"/>
         <image name="splash-top-left" width="140" height="100"/>
         <image name="splash-top-right" width="202" height="266"/>
