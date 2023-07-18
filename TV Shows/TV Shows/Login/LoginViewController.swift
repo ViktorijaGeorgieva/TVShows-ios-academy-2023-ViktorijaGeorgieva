@@ -6,42 +6,44 @@
 //
 
 import UIKit
-import MBProgressHUD
 
 final class LoginViewController: UIViewController {
-    @IBOutlet private weak var numberOfTapsLabel: UILabel!
-    @IBOutlet private weak var incrementButton: UIButton!
-    @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     
-    private var numberOfTaps: Int = 0
+    // MARK: - Outlets
+    
+    @IBOutlet private weak var rememberMeCheckboxButton: UIButton!
+    @IBOutlet private weak var showPasswordButton: UIButton!
+    @IBOutlet private weak var passwordTextField: UITextField!
+    @IBOutlet private weak var emailTextField: UITextField!
+    
+    // MARK: - Properties
+    
+    // MARK: -Lifecycle methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        MBProgressHUD.showAdded(to: view, animated: true)
         setUpUI()
-        animateSpinner()
     }
     
-    @IBAction private func incrementButtonPressed() {
-        numberOfTaps += 1
-        numberOfTapsLabel.text = String(numberOfTaps)
-        animateSpinner()
+    // MARK: -Actions
+    
+    @IBAction private func rememberMeCheckboxStateChanged(_ sender: UIButton) {
+        rememberMeCheckboxButton.isSelected.toggle()
     }
+    
+    @IBAction private func showPasswordStateChanged(_ sender: UIButton) {
+        passwordTextField.isSecureTextEntry.toggle()
+        if passwordTextField.isSecureTextEntry {
+            showPasswordButton.setImage(UIImage(named: "ic-visible.pdf"), for: UIControl.State.normal)
+        } else {
+            showPasswordButton.setImage(UIImage(named: "ic-invisible.pdf"), for: UIControl.State.normal)
+        }
+    }
+    
+    //MARK: -Utility methods
     
     private func setUpUI() {
-        view.backgroundColor = .systemMint
-        incrementButton.backgroundColor = .yellow
-        incrementButton.layer.cornerRadius = 15
-        numberOfTapsLabel.font = UIFont.systemFont(ofSize: 30)
-    }
-    
-    private func animateSpinner() {
-        if activityIndicator.isAnimating {
-            activityIndicator.stopAnimating()
-            incrementButton.setTitle("Start", for:  .normal)
-        } else {
-            activityIndicator.startAnimating()
-            incrementButton.setTitle("Stop", for: .normal)
-        }
+        rememberMeCheckboxButton.setImage(UIImage(named: "ic-checkbox-selected.pdf"), for: UIControl.State.selected)
+        rememberMeCheckboxButton.setImage(UIImage(named: "ic-checkbox-unselected.pdf"), for: UIControl.State.normal)
     }
 }
