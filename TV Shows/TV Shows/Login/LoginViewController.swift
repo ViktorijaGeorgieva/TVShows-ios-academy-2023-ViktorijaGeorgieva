@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import MBProgressHUD
+import Alamofire
 
 final class LoginViewController: UIViewController {
     
@@ -17,6 +19,8 @@ final class LoginViewController: UIViewController {
     @IBOutlet private weak var emailTextField: UITextField!
     
     // MARK: - Properties
+    
+    private var currentUserResponse: UserResponse?
     
     // MARK: -Lifecycle methods
     
@@ -42,12 +46,71 @@ final class LoginViewController: UIViewController {
     
     
     @IBAction func loginButtonPressed(_ sender: UIButton) {
-        navigateToHomeViewController()
+        guard let email = emailTextField.text, !email.isEmpty,
+              let password = passwordTextField.text, !password.isEmpty else {
+            return
+        }
+        
+        MBProgressHUD.showAdded(to: view, animated: true)
+        
+        let parameters: [String: String] = [
+            "email": email,
+            "password": password
+        ]
+        
+        AF
+            .request("https://tv-shows.infinum.academy/users/sign_in",
+                   method: .post,
+                   parameters: parameters,
+                   encoder: JSONParameterEncoder.default
+            )
+            .validate()
+            .responseDecodable(of: UserResponse.self) { [weak self] response in
+                guard let self = self else { return }
+                MBProgressHUD.hide(for: self.view, animated: true)
+                switch response.result {
+                case .success(let userResponse):
+                    self.handleRegisterOrLoginSuccess(userResponse: userResponse)
+                    navigateToHomeViewController()
+                case .failure(let error):
+                    print("Failure: \(error)")
+                }
+            }
     }
     
     
     @IBAction func registerButtonPressed(_ sender: UIButton) {
-        navigateToHomeViewController()
+        guard let email = emailTextField.text, !email.isEmpty,
+              let password = passwordTextField.text, !password.isEmpty else {
+            return
+        }
+        
+        MBProgressHUD.showAdded(to: view, animated: true)
+        
+        let parameters: [String: String] = [
+            "email": email,
+            "password": password,
+            "password_confirmation": password
+        ]
+        
+        AF
+            .request("https://tv-shows.infinum.academy/users",
+                   method: .post,
+                   parameters: parameters,
+                   encoder: JSONParameterEncoder.default
+            )
+            .validate()
+            .responseDecodable(of: UserResponse.self) { [weak self] response in
+                guard let self = self else { return }
+                MBProgressHUD.hide(for: self.view, animated: true)
+                switch response.result {
+                case .success(let userResponse):
+                    self.handleRegisterOrLoginSuccess(userResponse: userResponse)
+                    navigateToHomeViewController()
+                case .failure(let error):
+                    print("Failure: \(error)")
+                }
+            }
     }
     
     //MARK: -Utility methods
@@ -63,5 +126,12 @@ final class LoginViewController: UIViewController {
                 navigator.pushViewController(viewController, animated: true)
             }
         }
+    }
+    
+    private func handleRegisterOrLoginSuccess(userResponse: UserResponse) {
+        self.currentUserResponse = userResponse
+        print(userResponse.user.email)
+        print(userResponse.user.id)
+        print(userResponse.user.imageUrl)
     }
 }
