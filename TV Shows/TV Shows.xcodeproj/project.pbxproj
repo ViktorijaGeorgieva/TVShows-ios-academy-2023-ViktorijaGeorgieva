@@ -13,6 +13,8 @@
 		427163CA2A587E8F00A11E0C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 427163C82A587E8F00A11E0C /* LaunchScreen.storyboard */; };
 		427910882A5B03410037032D /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 427910872A5B03410037032D /* Login.storyboard */; };
 		4279108A2A5B03630037032D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427910892A5B03630037032D /* LoginViewController.swift */; };
+		42E07FB62A694DFE0019367B /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42E07FB52A694DFE0019367B /* Home.storyboard */; };
+		42E07FB82A694E280019367B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E07FB72A694E280019367B /* HomeViewController.swift */; };
 		A35055E7ABF1B06F3A8966C5 /* Pods_TV_Shows.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F535277DC0BB37F18E103ECC /* Pods_TV_Shows.framework */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +27,8 @@
 		427163CB2A587E8F00A11E0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		427910872A5B03410037032D /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		427910892A5B03630037032D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		42E07FB52A694DFE0019367B /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
+		42E07FB72A694E280019367B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		78A78CDFE5C314F8AC634D86 /* Pods-TV Shows.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TV Shows.debug.xcconfig"; path = "Target Support Files/Pods-TV Shows/Pods-TV Shows.debug.xcconfig"; sourceTree = "<group>"; };
 		9EED65DA2E1A856205179A71 /* Pods-TV Shows.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TV Shows.release.xcconfig"; path = "Target Support Files/Pods-TV Shows/Pods-TV Shows.release.xcconfig"; sourceTree = "<group>"; };
 		F535277DC0BB37F18E103ECC /* Pods_TV_Shows.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TV_Shows.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -63,6 +67,7 @@
 		427163BC2A587E8F00A11E0C /* TV Shows */ = {
 			isa = PBXGroup;
 			children = (
+				42E07FB42A694DC60019367B /* Home */,
 				427910862A5B02E90037032D /* Login */,
 				427163BD2A587E8F00A11E0C /* AppDelegate.swift */,
 				427163BF2A587E8F00A11E0C /* SceneDelegate.swift */,
@@ -80,6 +85,15 @@
 				427910892A5B03630037032D /* LoginViewController.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		42E07FB42A694DC60019367B /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				42E07FB52A694DFE0019367B /* Home.storyboard */,
+				42E07FB72A694E280019367B /* HomeViewController.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		57AB270DC413B82F92009447 /* Frameworks */ = {
@@ -162,6 +176,7 @@
 				427163CA2A587E8F00A11E0C /* LaunchScreen.storyboard in Resources */,
 				427163C72A587E8F00A11E0C /* Assets.xcassets in Resources */,
 				427910882A5B03410037032D /* Login.storyboard in Resources */,
+				42E07FB62A694DFE0019367B /* Home.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,6 +232,7 @@
 				4279108A2A5B03630037032D /* LoginViewController.swift in Sources */,
 				427163BE2A587E8F00A11E0C /* AppDelegate.swift in Sources */,
 				427163C02A587E8F00A11E0C /* SceneDelegate.swift in Sources */,
+				42E07FB82A694E280019367B /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

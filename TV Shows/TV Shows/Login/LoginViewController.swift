@@ -40,10 +40,28 @@ final class LoginViewController: UIViewController {
         }
     }
     
+    
+    @IBAction func loginButtonPressed(_ sender: UIButton) {
+        navigateToHomeViewController()
+    }
+    
+    
+    @IBAction func registerButtonPressed(_ sender: UIButton) {
+        navigateToHomeViewController()
+    }
+    
     //MARK: -Utility methods
     
     private func setUpUI() {
         rememberMeCheckboxButton.setImage(UIImage(named: "ic-checkbox-selected.pdf"), for: UIControl.State.selected)
         rememberMeCheckboxButton.setImage(UIImage(named: "ic-checkbox-unselected.pdf"), for: UIControl.State.normal)
+    }
+    
+    private func navigateToHomeViewController() {
+        if let viewController = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController {
+            if let navigator = navigationController {
+                navigator.pushViewController(viewController, animated: true)
+            }
+        }
     }
 }
