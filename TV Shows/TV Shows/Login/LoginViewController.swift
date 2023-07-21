@@ -22,14 +22,14 @@ final class LoginViewController: UIViewController {
     
     private var currentUserResponse: UserResponse?
     
-    // MARK: -Lifecycle methods
+    // MARK: - Lifecycle methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
     }
     
-    // MARK: -Actions
+    // MARK: - Actions
     
     @IBAction private func rememberMeCheckboxStateChanged(_ sender: UIButton) {
         rememberMeCheckboxButton.isSelected.toggle()
@@ -113,7 +113,7 @@ final class LoginViewController: UIViewController {
             }
     }
     
-    //MARK: -Utility methods
+    //MARK: - Utility methods
     
     private func setUpUI() {
         rememberMeCheckboxButton.setImage(UIImage(named: "ic-checkbox-selected.pdf"), for: UIControl.State.selected)
@@ -122,14 +122,12 @@ final class LoginViewController: UIViewController {
     
     private func navigateToHomeViewController() {
         if let viewController = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController {
-            if let navigator = navigationController {
-                navigator.pushViewController(viewController, animated: true)
-            }
+            navigationController?.pushViewController(viewController, animated: true)
         }
     }
     
     private func handleRegisterOrLoginSuccess(userResponse: UserResponse) {
-        self.currentUserResponse = userResponse
+        currentUserResponse = userResponse
         print(userResponse.user.email)
         print(userResponse.user.id)
         print(userResponse.user.imageUrl)
