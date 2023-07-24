@@ -74,6 +74,7 @@ final class LoginViewController: UIViewController {
                     navigateToHomeViewController()
                 case .failure(let error):
                     print("Failure: \(error)")
+                    showAlert(title: "Login failed", message: "Please enter valid email and password!")
                 }
             }
     }
@@ -109,6 +110,7 @@ final class LoginViewController: UIViewController {
                     navigateToHomeViewController()
                 case .failure(let error):
                     print("Failure: \(error)")
+                    showAlert(title: "Register failed", message: "Please enter email and password!")
                 }
             }
     }
@@ -132,4 +134,11 @@ final class LoginViewController: UIViewController {
         print(userResponse.user.id)
         print(userResponse.user.imageUrl)
     }
+    
+    private func showAlert(title: String, message: String) {
+            let alertController = UIAlertController(
+                title: title, message: message, preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: .default))
+            present(alertController, animated: true)
+        }
 }
