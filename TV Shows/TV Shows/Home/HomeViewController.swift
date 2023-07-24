@@ -9,9 +9,15 @@ import UIKit
 
 class HomeViewController : UIViewController {
     
+    //MARK: - Properties
+    
+    var userResponse: UserResponse?
+    var authInfo: AuthInfo?
+    
     //MARK: - Lifecycle methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(authInfo?.accessToken)
     }
 }
