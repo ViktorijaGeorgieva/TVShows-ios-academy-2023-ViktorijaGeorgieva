@@ -19,5 +19,6 @@ class HomeViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print(authInfo?.accessToken)
+        navigationController?.setNavigationBarHidden(true, animated: true)
     }
 }
