@@ -11,7 +11,6 @@ class HomeViewController : UIViewController {
     
     //MARK: - Outlets
     
-    
     @IBOutlet weak var tableView: UITableView!
     
     //MARK: - Properties
@@ -23,7 +22,9 @@ class HomeViewController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(authInfo?.accessToken)
+        if let authInfo = authInfo {
+            print(authInfo.accessToken)
+        }
         navigationController?.setNavigationBarHidden(true, animated: true)
         title = "Shows"
     }

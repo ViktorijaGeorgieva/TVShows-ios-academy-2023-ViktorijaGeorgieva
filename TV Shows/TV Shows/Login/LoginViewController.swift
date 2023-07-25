@@ -70,8 +70,9 @@ final class LoginViewController: UIViewController {
                 MBProgressHUD.hide(for: self.view, animated: true)
                 switch response.result {
                 case .success(let userResponse):
-                    self.handleRegisterOrLoginSuccess(userResponse: userResponse)
-                    navigateToHomeViewController()
+                    let headers = response.response?.headers.dictionary ?? [:]
+                    self.handleLoginSuccess(for: userResponse.user, headers: headers)
+//                    navigateToHomeViewController()
                 case .failure(let error):
                     print("Failure: \(error)")
                     showAlert(title: "Login failed", message: "Please enter valid email and password!")
@@ -85,15 +86,15 @@ final class LoginViewController: UIViewController {
               let password = passwordTextField.text, !password.isEmpty else {
             return
         }
-        
+
         MBProgressHUD.showAdded(to: view, animated: true)
-        
+
         let parameters: [String: String] = [
             "email": email,
             "password": password,
             "password_confirmation": password
         ]
-        
+
         AF
             .request("https://tv-shows.infinum.academy/users",
                    method: .post,
@@ -106,8 +107,8 @@ final class LoginViewController: UIViewController {
                 MBProgressHUD.hide(for: self.view, animated: true)
                 switch response.result {
                 case .success(let userResponse):
-                    self.handleRegisterOrLoginSuccess(userResponse: userResponse)
-                    navigateToHomeViewController()
+                    self.handleRegisterSuccess(userResponse: userResponse)
+//                    navigateToHomeViewController()
                 case .failure(let error):
                     print("Failure: \(error)")
                     showAlert(title: "Register failed", message: "Please enter email and password!")
@@ -122,17 +123,35 @@ final class LoginViewController: UIViewController {
         rememberMeCheckboxButton.setImage(UIImage(named: "ic-checkbox-unselected.pdf"), for: UIControl.State.normal)
     }
     
-    private func navigateToHomeViewController() {
+//    private func navigateToHomeViewController() {
+//        if let viewController = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController {
+//            navigationController?.pushViewController(viewController, animated: true)
+//        }
+//    }
+    
+    private func handleLoginSuccess(for user: User, headers: [String: String]) {
+//        currentUserResponse = userResponse
+//        print(userResponse.user.email)
+//        print(userResponse.user.id)
+//        print(userResponse.user.imageUrl)
+        guard let authInfo = try? AuthInfo(headers: headers) else {
+            return
+        }
         if let viewController = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController {
+            viewController.authInfo = authInfo
             navigationController?.pushViewController(viewController, animated: true)
         }
     }
     
-    private func handleRegisterOrLoginSuccess(userResponse: UserResponse) {
+    private func handleRegisterSuccess(userResponse: UserResponse){
         currentUserResponse = userResponse
-        print(userResponse.user.email)
-        print(userResponse.user.id)
-        print(userResponse.user.imageUrl)
+//        print(userResponse.user.email)
+//        print(userResponse.user.id)
+//        print(userResponse.user.imageUrl)
+        if let viewController = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController {
+            viewController.userResponse = userResponse
+            navigationController?.pushViewController(viewController, animated: true)
+        }
     }
     
     private func showAlert(title: String, message: String) {
