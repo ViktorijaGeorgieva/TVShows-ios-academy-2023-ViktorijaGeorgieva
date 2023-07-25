@@ -9,6 +9,11 @@ import UIKit
 
 class HomeViewController : UIViewController {
     
+    //MARK: - Outlets
+    
+    
+    @IBOutlet weak var tableView: UITableView!
+    
     //MARK: - Properties
     
     var userResponse: UserResponse?
@@ -20,5 +25,6 @@ class HomeViewController : UIViewController {
         super.viewDidLoad()
         print(authInfo?.accessToken)
         navigationController?.setNavigationBarHidden(true, animated: true)
+        title = "Shows"
     }
 }
