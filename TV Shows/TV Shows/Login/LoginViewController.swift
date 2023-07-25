@@ -130,10 +130,6 @@ final class LoginViewController: UIViewController {
 //    }
     
     private func handleLoginSuccess(for user: User, headers: [String: String]) {
-//        currentUserResponse = userResponse
-//        print(userResponse.user.email)
-//        print(userResponse.user.id)
-//        print(userResponse.user.imageUrl)
         guard let authInfo = try? AuthInfo(headers: headers) else {
             return
         }
@@ -145,9 +141,6 @@ final class LoginViewController: UIViewController {
     
     private func handleRegisterSuccess(userResponse: UserResponse){
         currentUserResponse = userResponse
-//        print(userResponse.user.email)
-//        print(userResponse.user.id)
-//        print(userResponse.user.imageUrl)
         if let viewController = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController {
             viewController.userResponse = userResponse
             navigationController?.pushViewController(viewController, animated: true)

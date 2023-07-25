@@ -6,8 +6,10 @@
 //
 
 import UIKit
+import MBProgressHUD
+import Alamofire
 
-class HomeViewController : UIViewController {
+final class HomeViewController : UIViewController {
     
     //MARK: - Outlets
     
@@ -17,6 +19,7 @@ class HomeViewController : UIViewController {
     
     var userResponse: UserResponse?
     var authInfo: AuthInfo?
+    private var shows: [Show] = []
     
     //MARK: - Lifecycle methods
     
@@ -27,5 +30,31 @@ class HomeViewController : UIViewController {
         }
         navigationController?.setNavigationBarHidden(true, animated: true)
         title = "Shows"
+        getShows()
+    }
+    
+    //MARK: - Utility methods
+    
+    private func getShows() {
+        MBProgressHUD.showAdded(to: view, animated: true)
+        AF
+            .request(
+              "https://tv-shows.infinum.academy/shows",
+              method: .get,
+              parameters: ["page": "1", "items": "100"],
+              headers: HTTPHeaders(authInfo!.headers)
+            )
+            .validate()
+            .responseDecodable(of: ShowsResponse.self) { [weak self] response in
+                guard let self = self else { return }
+                MBProgressHUD.hide(for: self.view, animated: true)
+                switch response.result {
+                case .success(let showsResponse):
+                    shows = showsResponse.shows
+                    tableView.reloadData()
+                    print(shows[0].title)
+                case .failure(let error):
+                    print("Failure: \(error)")
+                }}
     }
 }
