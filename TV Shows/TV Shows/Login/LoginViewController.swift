@@ -60,9 +60,9 @@ final class LoginViewController: UIViewController {
         
         AF
             .request("https://tv-shows.infinum.academy/users/sign_in",
-                   method: .post,
-                   parameters: parameters,
-                   encoder: JSONParameterEncoder.default
+                     method: .post,
+                     parameters: parameters,
+                     encoder: JSONParameterEncoder.default
             )
             .validate()
             .responseDecodable(of: UserResponse.self) { [weak self] response in
@@ -72,7 +72,6 @@ final class LoginViewController: UIViewController {
                 case .success(let userResponse):
                     let headers = response.response?.headers.dictionary ?? [:]
                     self.handleLoginSuccess(for: userResponse.user, headers: headers)
-//                    navigateToHomeViewController()
                 case .failure(let error):
                     print("Failure: \(error)")
                     showAlert(title: "Login failed", message: "Please enter valid email and password!")
@@ -86,20 +85,20 @@ final class LoginViewController: UIViewController {
               let password = passwordTextField.text, !password.isEmpty else {
             return
         }
-
+        
         MBProgressHUD.showAdded(to: view, animated: true)
-
+        
         let parameters: [String: String] = [
             "email": email,
             "password": password,
             "password_confirmation": password
         ]
-
+        
         AF
             .request("https://tv-shows.infinum.academy/users",
-                   method: .post,
-                   parameters: parameters,
-                   encoder: JSONParameterEncoder.default
+                     method: .post,
+                     parameters: parameters,
+                     encoder: JSONParameterEncoder.default
             )
             .validate()
             .responseDecodable(of: UserResponse.self) { [weak self] response in
@@ -108,7 +107,6 @@ final class LoginViewController: UIViewController {
                 switch response.result {
                 case .success(let userResponse):
                     self.handleRegisterSuccess(userResponse: userResponse)
-//                    navigateToHomeViewController()
                 case .failure(let error):
                     print("Failure: \(error)")
                     showAlert(title: "Register failed", message: "Please enter email and password!")
@@ -122,12 +120,6 @@ final class LoginViewController: UIViewController {
         rememberMeCheckboxButton.setImage(UIImage(named: "ic-checkbox-selected.pdf"), for: UIControl.State.selected)
         rememberMeCheckboxButton.setImage(UIImage(named: "ic-checkbox-unselected.pdf"), for: UIControl.State.normal)
     }
-    
-//    private func navigateToHomeViewController() {
-//        if let viewController = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController {
-//            navigationController?.pushViewController(viewController, animated: true)
-//        }
-//    }
     
     private func handleLoginSuccess(for user: User, headers: [String: String]) {
         guard let authInfo = try? AuthInfo(headers: headers) else {
@@ -148,9 +140,9 @@ final class LoginViewController: UIViewController {
     }
     
     private func showAlert(title: String, message: String) {
-            let alertController = UIAlertController(
-                title: title, message: message, preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "OK", style: .default))
-            present(alertController, animated: true)
-        }
+        let alertController = UIAlertController(
+            title: title, message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alertController, animated: true)
+    }
 }

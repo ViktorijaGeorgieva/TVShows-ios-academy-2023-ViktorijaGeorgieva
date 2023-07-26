@@ -28,14 +28,22 @@
                                             <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ns-H5-Neo">
-                                                    <rect key="frame" x="50" y="11" width="33" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ns-H5-Neo">
+                                                    <rect key="frame" x="34" y="5" width="56" height="41"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="41" id="V7e-R9-hqQ"/>
+                                                        <constraint firstAttribute="width" constant="181" id="j3q-eO-rHa"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="3Ns-H5-Neo" secondAttribute="trailing" constant="303" id="Eo4-FR-8gP"/>
+                                                <constraint firstItem="3Ns-H5-Neo" firstAttribute="top" secondItem="CLF-kz-0wW" secondAttribute="top" constant="5" id="TkT-4m-5oR"/>
+                                                <constraint firstItem="3Ns-H5-Neo" firstAttribute="leading" secondItem="CLF-kz-0wW" secondAttribute="leadingMargin" constant="14" id="pJc-U9-wJg"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="titleLabel" destination="3Ns-H5-Neo" id="QeR-Jb-HYu"/>
