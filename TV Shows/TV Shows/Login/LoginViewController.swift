@@ -60,9 +60,9 @@ final class LoginViewController: UIViewController {
         
         AF
             .request("https://tv-shows.infinum.academy/users/sign_in",
-                   method: .post,
-                   parameters: parameters,
-                   encoder: JSONParameterEncoder.default
+                     method: .post,
+                     parameters: parameters,
+                     encoder: JSONParameterEncoder.default
             )
             .validate()
             .responseDecodable(of: UserResponse.self) { [weak self] response in
@@ -70,10 +70,11 @@ final class LoginViewController: UIViewController {
                 MBProgressHUD.hide(for: self.view, animated: true)
                 switch response.result {
                 case .success(let userResponse):
-                    self.handleRegisterOrLoginSuccess(userResponse: userResponse)
-                    navigateToHomeViewController()
+                    let headers = response.response?.headers.dictionary ?? [:]
+                    self.handleLoginSuccess(for: userResponse.user, headers: headers)
                 case .failure(let error):
                     print("Failure: \(error)")
+                    showAlert(title: "Login failed", message: "Please enter valid email and password!")
                 }
             }
     }
@@ -95,9 +96,9 @@ final class LoginViewController: UIViewController {
         
         AF
             .request("https://tv-shows.infinum.academy/users",
-                   method: .post,
-                   parameters: parameters,
-                   encoder: JSONParameterEncoder.default
+                     method: .post,
+                     parameters: parameters,
+                     encoder: JSONParameterEncoder.default
             )
             .validate()
             .responseDecodable(of: UserResponse.self) { [weak self] response in
@@ -105,10 +106,10 @@ final class LoginViewController: UIViewController {
                 MBProgressHUD.hide(for: self.view, animated: true)
                 switch response.result {
                 case .success(let userResponse):
-                    self.handleRegisterOrLoginSuccess(userResponse: userResponse)
-                    navigateToHomeViewController()
+                    self.handleRegisterSuccess(userResponse: userResponse)
                 case .failure(let error):
                     print("Failure: \(error)")
+                    showAlert(title: "Register failed", message: "Please enter email and password!")
                 }
             }
     }
@@ -120,16 +121,28 @@ final class LoginViewController: UIViewController {
         rememberMeCheckboxButton.setImage(UIImage(named: "ic-checkbox-unselected.pdf"), for: UIControl.State.normal)
     }
     
-    private func navigateToHomeViewController() {
+    private func handleLoginSuccess(for user: User, headers: [String: String]) {
+        guard let authInfo = try? AuthInfo(headers: headers) else {
+            return
+        }
         if let viewController = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController {
+            viewController.authInfo = authInfo
             navigationController?.pushViewController(viewController, animated: true)
         }
     }
     
-    private func handleRegisterOrLoginSuccess(userResponse: UserResponse) {
+    private func handleRegisterSuccess(userResponse: UserResponse){
         currentUserResponse = userResponse
-        print(userResponse.user.email)
-        print(userResponse.user.id)
-        print(userResponse.user.imageUrl)
+        if let viewController = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController {
+            viewController.userResponse = userResponse
+            navigationController?.pushViewController(viewController, animated: true)
+        }
+    }
+    
+    private func showAlert(title: String, message: String) {
+        let alertController = UIAlertController(
+            title: title, message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alertController, animated: true)
     }
 }
