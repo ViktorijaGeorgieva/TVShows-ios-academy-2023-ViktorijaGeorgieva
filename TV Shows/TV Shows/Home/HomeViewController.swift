@@ -72,6 +72,14 @@ final class HomeViewController : UIViewController {
         alertController.addAction(UIAlertAction(title: "OK", style: .default))
         present(alertController, animated: true)
     }
+    
+    private func navigateToShowDetails(selectedShow: Show) {
+        if let showDetailsViewController = UIStoryboard(name: "ShowDetails", bundle: nil).instantiateViewController(withIdentifier: "ShowDetailsViewController") as? ShowDetailsViewController {
+            showDetailsViewController.showId = selectedShow.id
+            showDetailsViewController.authInfo = authInfo
+            navigationController?.pushViewController(showDetailsViewController, animated: true)
+        }
+    }
 }
 
 extension HomeViewController: UITableViewDelegate {
@@ -81,6 +89,11 @@ extension HomeViewController: UITableViewDelegate {
             currentPage += 1
             getShows()
         }
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let show = shows[indexPath.row]
+        navigateToShowDetails(selectedShow: show)
     }
 }
 
