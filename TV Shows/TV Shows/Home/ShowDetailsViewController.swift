@@ -13,9 +13,10 @@ final class ShowDetailsViewController: UIViewController {
     
     // MARK: - Outlets
     
+    @IBOutlet weak var tableView: UITableView!
     // MARK: - Private Properties
     
-    private var reviews: [ReviewsResponse] = []
+    private var reviews: [Review] = []
     private var showDetails: ShowResponse?
     
     // MARK: - Public Properties
@@ -30,6 +31,7 @@ final class ShowDetailsViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: true)
         getShowDetails(id: id, authInfo: authInfo!)
         getReviews(id: id, authInfo: authInfo!)
+        setupTableView()
     }
     
     //MARK: - Utility methods
@@ -49,8 +51,7 @@ final class ShowDetailsViewController: UIViewController {
                 switch response.result {
                 case .success(let showResponse):
                     showDetails = showResponse
-                    print(showDetails)
-                    //                    tableView.reloadData()
+                    tableView.reloadData()
                 case .failure(let error):
                     print("Failure: \(error)")
                 }}
@@ -70,12 +71,50 @@ final class ShowDetailsViewController: UIViewController {
                 MBProgressHUD.hide(for: self.view, animated: true)
                 switch response.result {
                 case .success(let reviewsResponse):
-                    print("\(reviewsResponse)")
-                    //tableView.reloadData()
+                    self.reviews.append(contentsOf: reviewsResponse.reviews)
+                    tableView.reloadData()
                 case .failure(let error):
                     print("Failure: \(error)")
                 }
             }
     }
     
+}
+
+extension ShowDetailsViewController: UITableViewDataSource {
+    
+    // MARK: - UITableViewDataSource
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return reviews.count + 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.row == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ShowDetailsTableViewCell.self), for: indexPath) as! ShowDetailsTableViewCell
+            if let showDetails = showDetails {
+                cell.configure(with: showDetails)
+            }
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ReviewsTableViewCell.self), for: indexPath) as! ReviewsTableViewCell
+            cell.configure(with: reviews[indexPath.row-1])
+            return cell
+        }
+    }
+}
+
+// MARK: - Private
+
+private extension ShowDetailsViewController {
+    func setupTableView() {
+        tableView.estimatedRowHeight = 140
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.tableFooterView = UIView()
+        tableView.dataSource = self
+    }
 }
