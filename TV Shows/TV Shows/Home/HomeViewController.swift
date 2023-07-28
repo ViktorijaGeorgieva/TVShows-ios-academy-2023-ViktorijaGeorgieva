@@ -57,9 +57,7 @@ final class HomeViewController : UIViewController {
                 switch response.result {
                 case .success(let showsResponse):
                     self.shows.append(contentsOf: showsResponse.shows)
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                    }
+                    tableView.reloadData()
                 case .failure(let error):
                     print("Failure: \(error)")
                     showAlert(title: "Request failed", message: "Fetching shows failed")
@@ -75,7 +73,7 @@ final class HomeViewController : UIViewController {
     
     private func navigateToShowDetails(selectedShow: Show) {
         if let showDetailsViewController = UIStoryboard(name: "ShowDetails", bundle: nil).instantiateViewController(withIdentifier: "ShowDetailsViewController") as? ShowDetailsViewController {
-            showDetailsViewController.showId = selectedShow.id
+            showDetailsViewController.id = selectedShow.id
             showDetailsViewController.authInfo = authInfo
             navigationController?.pushViewController(showDetailsViewController, animated: true)
         }
