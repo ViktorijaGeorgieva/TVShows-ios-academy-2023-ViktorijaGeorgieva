@@ -9,7 +9,7 @@ import UIKit
 import MBProgressHUD
 import Alamofire
 
-final class ShowDetailsViewController: UIViewController {
+final class ShowDetailsViewController: UIViewController, WriteReviewDelegate{
     
     // MARK: - Outlets
     
@@ -32,6 +32,22 @@ final class ShowDetailsViewController: UIViewController {
         getShowDetails(id: id, authInfo: authInfo!)
         getReviews(id: id, authInfo: authInfo!)
         setupTableView()
+    }
+    
+    // MARK: - Actions
+    
+    
+    @IBAction func writeAReviewButtonPressed(_ sender: UIButton) {
+        if let writeReviewViewController = UIStoryboard(name: "WriteReview", bundle: nil).instantiateViewController(withIdentifier: "WriteReviewViewController") as? WriteReviewViewController {
+            if let showId = showDetails?.show.id {
+                writeReviewViewController.showId = Int(showId)
+            }
+            writeReviewViewController.authInfo = authInfo
+            writeReviewViewController.delegate = self
+            let navigationController = UINavigationController(rootViewController:
+                                                                writeReviewViewController)
+            present(navigationController, animated: true)
+        }
     }
     
     //MARK: - Utility methods
@@ -77,6 +93,11 @@ final class ShowDetailsViewController: UIViewController {
                     print("Failure: \(error)")
                 }
             }
+    }
+    
+    func didAddReview(review: Review) {
+        reviews.append(review)
+        tableView.reloadData()
     }
     
 }

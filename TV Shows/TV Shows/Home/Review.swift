@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Review: Decodable {
+struct Review: Codable {
     let id: String
     let comment: String
     let rating: Double
@@ -22,6 +22,9 @@ struct Review: Decodable {
         case user
     }
 }
-struct ReviewsResponse: Decodable {
+struct ReviewsResponse: Codable {
     let reviews: [Review]
+}
+struct ReviewResponse: Codable {
+    let review: Review
 }

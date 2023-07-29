@@ -14,6 +14,14 @@ final class ReviewsTableViewCell: UITableViewCell {
     @IBOutlet weak var userEmail: UILabel!
     @IBOutlet weak var ratingView: RatingView!
     @IBOutlet weak var review: UILabel!
+    
+    // MARK: - Lifecycle methods
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        ratingView.configure(withStyle: .small)
+        ratingView.isEnabled = false
+    }
     // MARK: - Configure
 
     func configure(with item: Review) {

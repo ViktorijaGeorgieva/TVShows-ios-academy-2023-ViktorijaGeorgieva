@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		425372D92A7545A9008D33ED /* WriteReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425372D82A7545A9008D33ED /* WriteReviewViewController.swift */; };
 		427163BE2A587E8F00A11E0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427163BD2A587E8F00A11E0C /* AppDelegate.swift */; };
 		427163C02A587E8F00A11E0C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427163BF2A587E8F00A11E0C /* SceneDelegate.swift */; };
 		427163C72A587E8F00A11E0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 427163C62A587E8F00A11E0C /* Assets.xcassets */; };
@@ -21,6 +22,7 @@
 		42BBC6D62A73BE050029FF44 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42BBC6D52A73BE050029FF44 /* RatingView.swift */; };
 		42BBC6D82A73BFF00029FF44 /* ShowDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42BBC6D72A73BFF00029FF44 /* ShowDetailsTableViewCell.swift */; };
 		42BBC6DC2A7454F40029FF44 /* ReviewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42BBC6DB2A7454F40029FF44 /* ReviewsTableViewCell.swift */; };
+		42BBC6DE2A746A7E0029FF44 /* WriteReview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42BBC6DD2A746A7E0029FF44 /* WriteReview.storyboard */; };
 		42E07FB62A694DFE0019367B /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42E07FB52A694DFE0019367B /* Home.storyboard */; };
 		42E07FB82A694E280019367B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E07FB72A694E280019367B /* HomeViewController.swift */; };
 		42E07FBC2A697ADF0019367B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E07FBB2A697ADF0019367B /* User.swift */; };
@@ -28,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		425372D82A7545A9008D33ED /* WriteReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteReviewViewController.swift; sourceTree = "<group>"; };
 		427163BA2A587E8F00A11E0C /* TV Shows.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TV Shows.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		427163BD2A587E8F00A11E0C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		427163BF2A587E8F00A11E0C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -44,6 +47,7 @@
 		42BBC6D52A73BE050029FF44 /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		42BBC6D72A73BFF00029FF44 /* ShowDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailsTableViewCell.swift; sourceTree = "<group>"; };
 		42BBC6DB2A7454F40029FF44 /* ReviewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsTableViewCell.swift; sourceTree = "<group>"; };
+		42BBC6DD2A746A7E0029FF44 /* WriteReview.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WriteReview.storyboard; sourceTree = "<group>"; };
 		42E07FB52A694DFE0019367B /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		42E07FB72A694E280019367B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		42E07FBB2A697ADF0019367B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -127,6 +131,8 @@
 				42BBC6D12A72DD110029FF44 /* ShowDetailsViewController.swift */,
 				42BBC6D32A72E5220029FF44 /* Review.swift */,
 				42BBC6D52A73BE050029FF44 /* RatingView.swift */,
+				42BBC6DD2A746A7E0029FF44 /* WriteReview.storyboard */,
+				425372D82A7545A9008D33ED /* WriteReviewViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -208,6 +214,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42BBC6DE2A746A7E0029FF44 /* WriteReview.storyboard in Resources */,
 				427163CA2A587E8F00A11E0C /* LaunchScreen.storyboard in Resources */,
 				427163C72A587E8F00A11E0C /* Assets.xcassets in Resources */,
 				427910882A5B03410037032D /* Login.storyboard in Resources */,
@@ -266,6 +273,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				42BBC6D22A72DD110029FF44 /* ShowDetailsViewController.swift in Sources */,
+				425372D92A7545A9008D33ED /* WriteReviewViewController.swift in Sources */,
 				42BBC6C52A6F03500029FF44 /* Show.swift in Sources */,
 				42BBC6D42A72E5220029FF44 /* Review.swift in Sources */,
 				42BBC6D62A73BE050029FF44 /* RatingView.swift in Sources */,

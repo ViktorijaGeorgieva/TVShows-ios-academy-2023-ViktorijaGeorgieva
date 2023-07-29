@@ -14,6 +14,13 @@ final class ShowDetailsTableViewCell: UITableViewCell {
     @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var ratingView: RatingView!
     
+    // MARK: - Lifecycle methods
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        ratingView.configure(withStyle: .large)
+        ratingView.isEnabled = false
+    }
     
     // MARK: - Configure
 
