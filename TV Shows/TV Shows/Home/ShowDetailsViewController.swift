@@ -13,7 +13,7 @@ final class ShowDetailsViewController: UIViewController, WriteReviewDelegate{
     
     // MARK: - Outlets
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet private weak var tableView: UITableView!
     // MARK: - Private Properties
     
     private var reviews: [Review] = []

@@ -62,8 +62,8 @@ final class WriteReviewViewController: UIViewController {
                 switch response.result {
                 case .success(let reviewResponse):
                     self.dismiss(animated: true, completion: {
-                        self.delegate?.didAddReview(review: reviewResponse.review)
-                    })
+                            self.delegate?.didAddReview(review: reviewResponse.review)
+                        })
                 case .failure(let error):
                     self.showAlert()
                 }

@@ -17,7 +17,7 @@ final class LoginViewController: UIViewController {
     @IBOutlet private weak var showPasswordButton: UIButton!
     @IBOutlet private weak var passwordTextField: UITextField!
     @IBOutlet private weak var emailTextField: UITextField!
-    
+    @IBOutlet weak var logoImageView: UIImageView!
     // MARK: - Properties
     
     private var currentUserResponse: UserResponse?
@@ -27,6 +27,7 @@ final class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
+        pulsateLogoImage()
     }
     
     // MARK: - Actions
@@ -75,6 +76,8 @@ final class LoginViewController: UIViewController {
                 case .failure(let error):
                     print("Failure: \(error)")
                     showAlert(title: "Login failed", message: "Please enter valid email and password!")
+                    emailTextField.shakeAnimation()
+                    passwordTextField.shakeAnimation()
                 }
             }
     }
@@ -121,6 +124,12 @@ final class LoginViewController: UIViewController {
         rememberMeCheckboxButton.setImage(UIImage(named: "ic-checkbox-unselected.pdf"), for: UIControl.State.normal)
     }
     
+    private func pulsateLogoImage() {
+        UIView.animate(withDuration: 0.5, delay: 0, options: [.autoreverse, .repeat], animations: {
+            self.logoImageView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+        }, completion: nil)
+    }
+    
     private func handleLoginSuccess(for user: User, headers: [String: String]) {
         guard let authInfo = try? AuthInfo(headers: headers) else {
             return
@@ -143,6 +152,20 @@ final class LoginViewController: UIViewController {
         let alertController = UIAlertController(
             title: title, message: message, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alertController, animated: true)
+        present(alertController, animated: true) {
+            alertController.view.shakeAnimation()
+        }
+    }
+}
+
+extension UIView {
+    func shakeAnimation() {
+        let animation = CABasicAnimation(keyPath: "position")
+        animation.duration = 0.1
+        animation.repeatCount = 2
+        animation.autoreverses = true
+        animation.fromValue = NSValue(cgPoint: CGPoint(x: self.center.x - 10, y: self.center.y))
+        animation.toValue = NSValue(cgPoint: CGPoint(x: self.center.x + 10, y: self.center.y))
+        self.layer.add(animation, forKey: "position")
     }
 }
