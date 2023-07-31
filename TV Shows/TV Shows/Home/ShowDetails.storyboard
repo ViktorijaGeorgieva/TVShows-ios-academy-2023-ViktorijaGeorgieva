@@ -40,8 +40,8 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="iHp-Jk-2gh">
                                                     <rect key="frame" x="20" y="30.999999999999972" width="353" height="480.33333333333326"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="friends" translatesAutoresizingMaskIntoConstraints="NO" id="YYL-Wy-YGr">
-                                                            <rect key="frame" x="0.0" y="0.0" width="353" height="350"/>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic-show-placeholder-rectangle" translatesAutoresizingMaskIntoConstraints="NO" id="YYL-Wy-YGr">
+                                                            <rect key="frame" x="0.0" y="0.0" width="350" height="350"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="350" id="axS-B9-MRO"/>
                                                             </constraints>
@@ -75,6 +75,7 @@
                                         <connections>
                                             <outlet property="descriptionLabel" destination="lqD-HU-54D" id="mys-b5-wFi"/>
                                             <outlet property="ratingView" destination="RY3-C3-0cv" id="1wh-fk-yO8"/>
+                                            <outlet property="showImageView" destination="YYL-Wy-YGr" id="eY6-AL-Aqo"/>
                                             <outlet property="titleLabel" destination="B6e-No-bi4" id="ldV-5z-hDv"/>
                                         </connections>
                                     </tableViewCell>
@@ -183,8 +184,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="friends" width="1200" height="1202"/>
         <image name="ic-profile-placeholder" width="150" height="150"/>
+        <image name="ic-show-placeholder-rectangle" width="350" height="350"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

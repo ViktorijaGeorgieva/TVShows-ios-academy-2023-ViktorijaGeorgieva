@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class ShowDetailsTableViewCell: UITableViewCell {
     
@@ -13,6 +14,7 @@ final class ShowDetailsTableViewCell: UITableViewCell {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var ratingView: RatingView!
+    @IBOutlet private weak var showImageView: UIImageView!
     
     // MARK: - Lifecycle methods
     
@@ -28,5 +30,10 @@ final class ShowDetailsTableViewCell: UITableViewCell {
         titleLabel.text = item.show.title
         descriptionLabel.text = item.show.description
         ratingView.rating = Int(item.show.averageRating!)
+        if let imageUrlString = item.show.imageUrl, let imageUrl = URL(string: imageUrlString) {
+            showImageView.kf.setImage(with: imageUrl, placeholder: UIImage(named: "ic-show-placeholder-vertical"))
+        } else {
+            showImageView.image = UIImage(named: "ic-show-placeholder-vertical")
+        }
     }
 }

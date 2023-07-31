@@ -8,6 +8,7 @@ target 'TV Shows' do
   # Pods for TV Shows
   pod 'MBProgressHUD'
   pod 'Alamofire'
+  pod 'Kingfisher'
 end
 
 post_install do |installer|

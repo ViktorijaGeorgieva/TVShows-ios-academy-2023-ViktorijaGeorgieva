@@ -14,7 +14,7 @@ final class HomeViewController : UIViewController {
     //MARK: - Outlets
     
     @IBOutlet private weak var tableView: UITableView!
-    
+
     //MARK: - Private properties
     
     private var shows: [Show] = []
