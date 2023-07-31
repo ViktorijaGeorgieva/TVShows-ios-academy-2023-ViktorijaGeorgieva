@@ -10,6 +10,7 @@ import UIKit
 final class ShowDetailsTableViewCell: UITableViewCell {
     
     // MARK: - Private UI
+    
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var ratingView: RatingView!

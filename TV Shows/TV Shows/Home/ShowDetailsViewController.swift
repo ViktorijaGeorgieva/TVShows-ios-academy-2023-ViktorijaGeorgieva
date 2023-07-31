@@ -11,18 +11,19 @@ import Alamofire
 
 final class ShowDetailsViewController: UIViewController, WriteReviewDelegate{
     
-    // MARK: - Outlets
-    
-    @IBOutlet weak var tableView: UITableView!
-    // MARK: - Private Properties
-    
-    private var reviews: [Review] = []
-    private var showDetails: ShowResponse?
-    
     // MARK: - Public Properties
     
     var id: String = ""
     var authInfo: AuthInfo?
+    
+    // MARK: - Outlets
+    
+    @IBOutlet private weak var tableView: UITableView!
+    
+    // MARK: - Private Properties
+    
+    private var reviews: [Review] = []
+    private var showDetails: ShowResponse?
     
     //MARK: - Lifecycle methods
     
@@ -36,18 +37,19 @@ final class ShowDetailsViewController: UIViewController, WriteReviewDelegate{
     
     // MARK: - Actions
     
-    
     @IBAction func writeAReviewButtonPressed(_ sender: UIButton) {
-        if let writeReviewViewController = UIStoryboard(name: "WriteReview", bundle: nil).instantiateViewController(withIdentifier: "WriteReviewViewController") as? WriteReviewViewController {
-            if let showId = showDetails?.show.id {
-                writeReviewViewController.showId = Int(showId)
-            }
-            writeReviewViewController.authInfo = authInfo
-            writeReviewViewController.delegate = self
-            let navigationController = UINavigationController(rootViewController:
-                                                                writeReviewViewController)
-            present(navigationController, animated: true)
+        guard let writeReviewViewController = UIStoryboard(name: "WriteReview", bundle: nil).instantiateViewController(withIdentifier: "WriteReviewViewController") as? WriteReviewViewController else {
+            return
         }
+        guard let showId = showDetails?.show.id else {
+            return
+        }
+        writeReviewViewController.showId = Int(showId)
+        writeReviewViewController.authInfo = authInfo
+        writeReviewViewController.delegate = self
+        let navigationController = UINavigationController(rootViewController:
+                                                            writeReviewViewController)
+        present(navigationController, animated: true)
     }
     
     //MARK: - Utility methods

@@ -11,6 +11,13 @@ import Alamofire
 
 final class HomeViewController : UIViewController {
     
+    //MARK: - Public properties
+    
+    var userResponse: UserResponse?
+    var authInfo: AuthInfo?
+    var currentPage = 1
+    let itemsPerPage = 20
+    
     //MARK: - Outlets
     
     @IBOutlet private weak var tableView: UITableView!
@@ -18,13 +25,6 @@ final class HomeViewController : UIViewController {
     //MARK: - Private properties
     
     private var shows: [Show] = []
-    
-    //MARK: - Public properties
-    
-    var userResponse: UserResponse?
-    var authInfo: AuthInfo?
-    var currentPage = 1
-    let itemsPerPage = 20
     
     //MARK: - Lifecycle methods
     
@@ -81,7 +81,9 @@ final class HomeViewController : UIViewController {
 }
 
 extension HomeViewController: UITableViewDelegate {
+    
     // MARK: - UITableViewDelegate
+    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.row == shows.count - 1 {
             currentPage += 1
