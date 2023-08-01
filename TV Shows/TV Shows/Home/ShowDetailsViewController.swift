@@ -37,7 +37,6 @@ final class ShowDetailsViewController: UIViewController, WriteReviewDelegate{
     
     // MARK: - Actions
     
-    
     @IBAction func writeAReviewButtonPressed(_ sender: UIButton) {
         guard let writeReviewViewController = UIStoryboard(name: "WriteReview", bundle: nil).instantiateViewController(withIdentifier: "WriteReviewViewController") as? WriteReviewViewController else {
             return
