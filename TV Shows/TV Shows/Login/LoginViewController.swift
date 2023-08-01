@@ -134,6 +134,12 @@ final class LoginViewController: UIViewController {
         guard let authInfo = try? AuthInfo(headers: headers) else {
             return
         }
+        if rememberMeCheckboxButton.isSelected {
+            let encoder = PropertyListEncoder()
+            if let encoded = try? encoder.encode(authInfo.headers) {
+                UserDefaults.standard.set(encoded, forKey: "AuthInfo")
+            }
+        }
         if let viewController = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController {
             viewController.authInfo = authInfo
             navigationController?.pushViewController(viewController, animated: true)
