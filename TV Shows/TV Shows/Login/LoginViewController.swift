@@ -117,7 +117,7 @@ final class LoginViewController: UIViewController {
             }
     }
     
-    //MARK: - Utility methods
+    // MARK: - Utility methods
     
     private func setUpUI() {
         rememberMeCheckboxButton.setImage(UIImage(named: "ic-checkbox-selected.pdf"), for: UIControl.State.selected)

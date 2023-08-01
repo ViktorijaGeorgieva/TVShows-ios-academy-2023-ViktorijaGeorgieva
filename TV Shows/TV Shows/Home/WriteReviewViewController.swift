@@ -11,11 +11,6 @@ import Alamofire
 
 final class WriteReviewViewController: UIViewController {
     
-    // MARK: -Outlets
-    
-    @IBOutlet private weak var ratingView: RatingView!
-    @IBOutlet private weak var commentTextField: UITextField!
-    
     // MARK: - Public properties
     
     var showId: Int?
@@ -24,28 +19,28 @@ final class WriteReviewViewController: UIViewController {
     var authInfo: AuthInfo?
     weak var delegate: WriteReviewDelegate?
     
-    //MARK: - Lifecycle methods
+    // MARK: - Outlets
+    
+    @IBOutlet private weak var ratingView: RatingView!
+    @IBOutlet private weak var commentTextField: UITextField!
+    
+    // MARK: - Lifecycle methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let closeButton = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(closeButtonPressed))
-        closeButton.tintColor = UIColor(red: 82/255.0, green: 54/255.0, blue: 140/255.0, alpha: 1)
-        navigationItem.leftBarButtonItem = closeButton
-        navigationItem.title = "Write a Review"
+        closeButton()
     }
     
     // MARK: - Actions
     
     @IBAction func submitButtonPressed(_ sender: UIButton) {
-        rating = ratingView.rating
-        comment = commentTextField.text
-        guard let showId = showId, let rating = rating, let comment = comment, let authInfo = authInfo else {
+        guard let showId = showId, let comment = commentTextField.text, let authInfo = authInfo else {
             return
         }
         MBProgressHUD.showAdded(to: view, animated: true)
         let parameters: [String: Any] = [
             "show_id": showId,
-            "rating": rating,
+            "rating": ratingView.rating,
             "comment": comment
         ]
         AF
@@ -62,8 +57,8 @@ final class WriteReviewViewController: UIViewController {
                 switch response.result {
                 case .success(let reviewResponse):
                     self.dismiss(animated: true, completion: {
-                            self.delegate?.didAddReview(review: reviewResponse.review)
-                        })
+                        self.delegate?.didAddReview(review: reviewResponse.review)
+                    })
                 case .failure(let error):
                     self.showAlert()
                 }
@@ -81,6 +76,13 @@ final class WriteReviewViewController: UIViewController {
         let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
+    }
+    
+    private func closeButton() {
+        let closeButton = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(closeButtonPressed))
+        closeButton.tintColor = UIColor(red: 82/255.0, green: 54/255.0, blue: 140/255.0, alpha: 1)
+        navigationItem.leftBarButtonItem = closeButton
+        navigationItem.title = "Write a Review"
     }
     
 }
