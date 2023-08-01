@@ -11,6 +11,13 @@ import Alamofire
 
 final class HomeViewController : UIViewController {
     
+    //MARK: - Public properties
+    
+    var userResponse: UserResponse?
+    var authInfo: AuthInfo?
+    var currentPage = 1
+    let itemsPerPage = 20
+    
     //MARK: - Outlets
     
     @IBOutlet private weak var tableView: UITableView!
@@ -18,13 +25,6 @@ final class HomeViewController : UIViewController {
     //MARK: - Private properties
     
     private var shows: [Show] = []
-    
-    //MARK: - Public properties
-    
-    var userResponse: UserResponse?
-    var authInfo: AuthInfo?
-    var currentPage = 1
-    let itemsPerPage = 20
     
     //MARK: - Lifecycle methods
     
@@ -57,9 +57,7 @@ final class HomeViewController : UIViewController {
                 switch response.result {
                 case .success(let showsResponse):
                     self.shows.append(contentsOf: showsResponse.shows)
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                    }
+                    tableView.reloadData()
                 case .failure(let error):
                     print("Failure: \(error)")
                     showAlert(title: "Request failed", message: "Fetching shows failed")
@@ -72,15 +70,30 @@ final class HomeViewController : UIViewController {
         alertController.addAction(UIAlertAction(title: "OK", style: .default))
         present(alertController, animated: true)
     }
+    
+    private func navigateToShowDetails(selectedShow: Show) {
+        if let showDetailsViewController = UIStoryboard(name: "ShowDetails", bundle: nil).instantiateViewController(withIdentifier: "ShowDetailsViewController") as? ShowDetailsViewController {
+            showDetailsViewController.id = selectedShow.id
+            showDetailsViewController.authInfo = authInfo
+            navigationController?.pushViewController(showDetailsViewController, animated: true)
+        }
+    }
 }
 
 extension HomeViewController: UITableViewDelegate {
+    
     // MARK: - UITableViewDelegate
+    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.row == shows.count - 1 {
             currentPage += 1
             getShows()
         }
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let show = shows[indexPath.row]
+        navigateToShowDetails(selectedShow: show)
     }
 }
 

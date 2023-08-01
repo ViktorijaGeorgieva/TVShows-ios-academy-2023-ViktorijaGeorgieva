@@ -27,3 +27,6 @@ struct Show: Decodable {
 struct ShowsResponse: Decodable {
     let shows: [Show]
 }
+struct ShowResponse: Decodable {
+    let show: Show
+}
