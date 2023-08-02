@@ -21,7 +21,8 @@ final class HomeViewController : UIViewController {
     // MARK: - Outlets
     
     @IBOutlet private weak var tableView: UITableView!
-
+    @IBOutlet private weak var profileDetailsButton: UIButton!
+    
     // MARK: - Private properties
     
     private var shows: [Show] = []
@@ -30,10 +31,12 @@ final class HomeViewController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.setNavigationBarHidden(true, animated: true)
-        title = "Shows"
+        navigationController?.setNavigationBarHidden(false, animated: true)
         getShows()
         setupTableView()
+        profileDetailsButton.addTarget(self, action: #selector(profileDetailsActionHandler), for: .touchUpInside)
+        let profileButtonItem = UIBarButtonItem(customView: profileDetailsButton)
+        navigationItem.rightBarButtonItem = profileButtonItem
     }
     
     // MARK: - Utility methods
@@ -77,6 +80,15 @@ final class HomeViewController : UIViewController {
             showDetailsViewController.authInfo = authInfo
             navigationController?.pushViewController(showDetailsViewController, animated: true)
         }
+    }
+    
+    @objc private func profileDetailsActionHandler() {
+        guard let profileDetailsViewController = UIStoryboard(name: "ProfileDetails", bundle: nil).instantiateViewController(withIdentifier: "ProfileDetailsViewController") as? ProfileDetailsViewController else {
+            return
+        }
+        profileDetailsViewController.authInfo = authInfo
+        let navigationController = UINavigationController(rootViewController: profileDetailsViewController)
+        present(navigationController, animated: true)
     }
 }
 
