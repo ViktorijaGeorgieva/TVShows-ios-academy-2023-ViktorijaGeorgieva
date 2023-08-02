@@ -29,6 +29,17 @@ final class ProfileDetailsViewController: UIViewController {
         getUserInfo()
     }
     
+    // MARK: - Actions
+    
+    
+    @IBAction func logoutButtonPressed(_ sender: UIButton) {
+        dismiss(animated: true, completion: {
+            UserDefaults.standard.removeObject(forKey: "AuthInfo")
+            print("\(UserDefaults.standard)")
+            NotificationCenter.default.post(name: .didLogout, object: nil)
+        })
+    }
+    
     // MARK: - Utility methods
     
     @objc private func closeButtonPressed() {

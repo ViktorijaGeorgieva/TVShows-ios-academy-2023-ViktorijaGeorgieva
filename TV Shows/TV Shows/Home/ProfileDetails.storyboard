@@ -57,6 +57,9 @@
                                             <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="17"/>
                                             <color key="baseForegroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="logoutButtonPressed:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="B8p-KV-bZv"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>

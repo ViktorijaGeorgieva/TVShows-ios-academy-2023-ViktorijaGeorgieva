@@ -37,6 +37,7 @@ final class HomeViewController : UIViewController {
         profileDetailsButton.addTarget(self, action: #selector(profileDetailsActionHandler), for: .touchUpInside)
         let profileButtonItem = UIBarButtonItem(customView: profileDetailsButton)
         navigationItem.rightBarButtonItem = profileButtonItem
+        NotificationCenter.default.addObserver(self, selector: #selector(handleLogoutNotification), name: .didLogout, object: nil)
     }
     
     // MARK: - Utility methods
@@ -89,6 +90,18 @@ final class HomeViewController : UIViewController {
         profileDetailsViewController.authInfo = authInfo
         let navigationController = UINavigationController(rootViewController: profileDetailsViewController)
         present(navigationController, animated: true)
+    }
+    
+    @objc private func handleLogoutNotification() {
+        guard let loginViewController = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController else {
+            return
+        }
+        navigationController?.setViewControllers([loginViewController], animated:
+                                                    true)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .didLogout, object: nil)
     }
 }
 

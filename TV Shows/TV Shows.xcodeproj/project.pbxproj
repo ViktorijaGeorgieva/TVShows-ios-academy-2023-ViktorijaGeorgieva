@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		422C5E8B2A7A8BFA00A29BB2 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422C5E8A2A7A8BFA00A29BB2 /* Notification.swift */; };
 		425372D92A7545A9008D33ED /* WriteReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425372D82A7545A9008D33ED /* WriteReviewViewController.swift */; };
 		427163BE2A587E8F00A11E0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427163BD2A587E8F00A11E0C /* AppDelegate.swift */; };
 		427163C02A587E8F00A11E0C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427163BF2A587E8F00A11E0C /* SceneDelegate.swift */; };
@@ -32,6 +33,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		422C5E8A2A7A8BFA00A29BB2 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		425372D82A7545A9008D33ED /* WriteReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteReviewViewController.swift; sourceTree = "<group>"; };
 		427163BA2A587E8F00A11E0C /* TV Shows.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TV Shows.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		427163BD2A587E8F00A11E0C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				425372D82A7545A9008D33ED /* WriteReviewViewController.swift */,
 				42EE01422A79407D00B393C1 /* ProfileDetails.storyboard */,
 				42EE01442A79408F00B393C1 /* ProfileDetailsViewController.swift */,
+				422C5E8A2A7A8BFA00A29BB2 /* Notification.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 				427163BE2A587E8F00A11E0C /* AppDelegate.swift in Sources */,
 				42EE01452A79408F00B393C1 /* ProfileDetailsViewController.swift in Sources */,
 				427163C02A587E8F00A11E0C /* SceneDelegate.swift in Sources */,
+				422C5E8B2A7A8BFA00A29BB2 /* Notification.swift in Sources */,
 				42E07FBC2A697ADF0019367B /* User.swift in Sources */,
 				42BBC6D82A73BFF00029FF44 /* ShowDetailsTableViewCell.swift in Sources */,
 				42E07FB82A694E280019367B /* HomeViewController.swift in Sources */,
