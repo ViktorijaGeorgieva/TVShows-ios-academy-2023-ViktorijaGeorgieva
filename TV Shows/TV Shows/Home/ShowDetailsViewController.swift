@@ -9,7 +9,7 @@ import UIKit
 import MBProgressHUD
 import Alamofire
 
-final class ShowDetailsViewController: UIViewController, WriteReviewDelegate{
+final class ShowDetailsViewController: UIViewController{
     
     // MARK: - Public Properties
     
@@ -36,7 +36,6 @@ final class ShowDetailsViewController: UIViewController, WriteReviewDelegate{
     }
     
     // MARK: - Actions
-    
     
     @IBAction func writeAReviewButtonPressed(_ sender: UIButton) {
         guard let writeReviewViewController = UIStoryboard(name: "WriteReview", bundle: nil).instantiateViewController(withIdentifier: "WriteReviewViewController") as? WriteReviewViewController else {
@@ -97,12 +96,6 @@ final class ShowDetailsViewController: UIViewController, WriteReviewDelegate{
                 }
             }
     }
-    
-    func didAddReview(review: Review) {
-        reviews.append(review)
-        tableView.reloadData()
-    }
-    
 }
 
 extension ShowDetailsViewController: UITableViewDataSource {
@@ -129,6 +122,13 @@ extension ShowDetailsViewController: UITableViewDataSource {
             cell.configure(with: reviews[indexPath.row-1])
             return cell
         }
+    }
+}
+
+extension ShowDetailsViewController: WriteReviewDelegate {
+    func didAddReview(review: Review) {
+        reviews.append(review)
+        tableView.reloadData()
     }
 }
 
