@@ -84,7 +84,6 @@ final class WriteReviewViewController: UIViewController {
         navigationItem.leftBarButtonItem = closeButton
         navigationItem.title = "Write a Review"
     }
-    
 }
 
 protocol WriteReviewDelegate: AnyObject {
