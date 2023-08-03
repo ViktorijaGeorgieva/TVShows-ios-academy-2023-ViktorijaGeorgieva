@@ -35,7 +35,6 @@ final class ProfileDetailsViewController: UIViewController, UINavigationControll
     @IBAction func logoutButtonPressed(_ sender: UIButton) {
         dismiss(animated: true, completion: {
             UserDefaults.standard.removeObject(forKey: "AuthInfo")
-            print("\(UserDefaults.standard)")
             NotificationCenter.default.post(name: .didLogout, object: nil)
         })
     }
@@ -117,24 +116,6 @@ final class ProfileDetailsViewController: UIViewController, UINavigationControll
                     print("Image upload failed: \(error)")
                 }
             }
-        //        guard let authInfo = authInfo else {
-        //            return
-        //        }
-        //        MBProgressHUD.showAdded(to: view, animated: true)
-        //        AF
-        //            .request(
-        //                "https://tv-shows.infinum.academy/users/me", method: .get, headers: HTTPHeaders(authInfo.headers)
-        //            )
-        //            .validate()
-        //            .responseDecodable(of: UserResponse.self) { [weak self] response in
-        //                guard let self = self else { return }
-        //                MBProgressHUD.hide(for: self.view, animated: true)
-        //                switch response.result {
-        //                case .success(let userResponse):
-        //                    self.updateUI(with: userResponse.user)
-        //                case .failure(let error):
-        //                    print("Failure: \(error)")
-        //                }}
     }
 }
 
