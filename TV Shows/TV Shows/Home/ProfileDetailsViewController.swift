@@ -43,6 +43,25 @@ final class ProfileDetailsViewController: UIViewController, UINavigationControll
     @IBAction func changeProfilePhotoPressed(_ sender: UIButton) {
         openPhotoGallery()
     }
+}
+
+extension ProfileDetailsViewController: UIImagePickerControllerDelegate, UINavigationBarDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let selectedImage = info[.originalImage] as? UIImage {
+            storeImage(selectedImage)
+        }
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+}
+
+// MARK: - Private
+
+private extension ProfileDetailsViewController {
     
     // MARK: - Utility methods
     
@@ -94,7 +113,7 @@ final class ProfileDetailsViewController: UIViewController, UINavigationControll
         present(imagePickerController, animated: true, completion: nil)
     }
     
-    func storeImage(_ image: UIImage) {
+    private func storeImage(_ image: UIImage) {
         guard let imageData = image.jpegData(compressionQuality: 0.9) else { return }
         let requestData = MultipartFormData()
         guard let authInfo = authInfo else {
@@ -116,19 +135,5 @@ final class ProfileDetailsViewController: UIViewController, UINavigationControll
                     print("Image upload failed: \(error)")
                 }
             }
-    }
-}
-
-extension ProfileDetailsViewController: UIImagePickerControllerDelegate, UINavigationBarDelegate {
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let selectedImage = info[.originalImage] as? UIImage {
-            storeImage(selectedImage)
-        }
-        picker.dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: true, completion: nil)
     }
 }

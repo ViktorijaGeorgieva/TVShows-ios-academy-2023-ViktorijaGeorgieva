@@ -31,13 +31,11 @@ final class HomeViewController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.setNavigationBarHidden(false, animated: true)
+        setUpNavigationBar()
         getShows()
         setupTableView()
-        profileDetailsButton.addTarget(self, action: #selector(profileDetailsActionHandler), for: .touchUpInside)
-        let profileButtonItem = UIBarButtonItem(customView: profileDetailsButton)
-        navigationItem.rightBarButtonItem = profileButtonItem
-        NotificationCenter.default.addObserver(self, selector: #selector(handleLogoutNotification), name: .didLogout, object: nil)
+        setUpProfileDetailsButton()
+        logoutNotification()
     }
     
     // MARK: - Utility methods
@@ -81,6 +79,20 @@ final class HomeViewController : UIViewController {
             showDetailsViewController.authInfo = authInfo
             navigationController?.pushViewController(showDetailsViewController, animated: true)
         }
+    }
+    
+    private func setUpNavigationBar() {
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    private func setUpProfileDetailsButton() {
+        profileDetailsButton.addTarget(self, action: #selector(profileDetailsActionHandler), for: .touchUpInside)
+        let profileButtonItem = UIBarButtonItem(customView: profileDetailsButton)
+        navigationItem.rightBarButtonItem = profileButtonItem
+    }
+    
+    private func logoutNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(handleLogoutNotification), name: .didLogout, object: nil)
     }
     
     @objc private func profileDetailsActionHandler() {
