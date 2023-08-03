@@ -21,7 +21,8 @@ final class HomeViewController : UIViewController {
     // MARK: - Outlets
     
     @IBOutlet private weak var tableView: UITableView!
-
+    @IBOutlet private weak var profileDetailsButton: UIButton!
+    
     // MARK: - Private properties
     
     private var shows: [Show] = []
@@ -30,10 +31,11 @@ final class HomeViewController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.setNavigationBarHidden(true, animated: true)
-        title = "Shows"
+        setUpNavigationBar()
         getShows()
         setupTableView()
+        setUpProfileDetailsButton()
+        logoutNotification()
     }
     
     // MARK: - Utility methods
@@ -77,6 +79,41 @@ final class HomeViewController : UIViewController {
             showDetailsViewController.authInfo = authInfo
             navigationController?.pushViewController(showDetailsViewController, animated: true)
         }
+    }
+    
+    private func setUpNavigationBar() {
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    private func setUpProfileDetailsButton() {
+        profileDetailsButton.addTarget(self, action: #selector(profileDetailsActionHandler), for: .touchUpInside)
+        let profileButtonItem = UIBarButtonItem(customView: profileDetailsButton)
+        navigationItem.rightBarButtonItem = profileButtonItem
+    }
+    
+    private func logoutNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(handleLogoutNotification), name: .didLogout, object: nil)
+    }
+    
+    @objc private func profileDetailsActionHandler() {
+        guard let profileDetailsViewController = UIStoryboard(name: "ProfileDetails", bundle: nil).instantiateViewController(withIdentifier: "ProfileDetailsViewController") as? ProfileDetailsViewController else {
+            return
+        }
+        profileDetailsViewController.authInfo = authInfo
+        let navigationController = UINavigationController(rootViewController: profileDetailsViewController)
+        present(navigationController, animated: true)
+    }
+    
+    @objc private func handleLogoutNotification() {
+        guard let loginViewController = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController else {
+            return
+        }
+        navigationController?.setViewControllers([loginViewController], animated:
+                                                    true)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .didLogout, object: nil)
     }
 }
 

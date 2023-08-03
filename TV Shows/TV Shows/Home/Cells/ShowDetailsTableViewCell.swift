@@ -30,11 +30,12 @@ final class ShowDetailsTableViewCell: UITableViewCell {
     func configure(with item: ShowResponse) {
         titleLabel.text = item.show.title
         descriptionLabel.text = item.show.description
-        ratingView.rating = Int(item.show.averageRating!)
         if let imageUrlString = item.show.imageUrl, let imageUrl = URL(string: imageUrlString) {
             showImageView.kf.setImage(with: imageUrl, placeholder: UIImage(named: "ic-show-placeholder-vertical"))
         } else {
             showImageView.image = UIImage(named: "ic-show-placeholder-vertical")
         }
+        guard let rating = item.show.averageRating else { return }
+        ratingView.rating = Int(rating)
     }
 }

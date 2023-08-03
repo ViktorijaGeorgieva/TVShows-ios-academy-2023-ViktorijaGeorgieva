@@ -30,8 +30,8 @@ final class ShowDetailsViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(false, animated: true)
-        getShowDetails(id: id, authInfo: authInfo!)
-        getReviews(id: id, authInfo: authInfo!)
+        getShowDetails(id: id, authInfo: authInfo)
+        getReviews(id: id, authInfo: authInfo)
         setupTableView()
     }
     
@@ -54,7 +54,8 @@ final class ShowDetailsViewController: UIViewController{
     
     // MARK: - Utility methods
     
-    private func getShowDetails(id: String, authInfo: AuthInfo) {
+    private func getShowDetails(id: String, authInfo: AuthInfo?) {
+        guard let authInfo = authInfo else { return }
         MBProgressHUD.showAdded(to: view, animated: true)
         AF
             .request(
@@ -75,7 +76,8 @@ final class ShowDetailsViewController: UIViewController{
                 }}
     }
     
-    private func getReviews(id: String, authInfo: AuthInfo) {
+    private func getReviews(id: String, authInfo: AuthInfo?) {
+        guard let authInfo = authInfo else { return }
         MBProgressHUD.showAdded(to: view, animated: true)
         AF
             .request(
