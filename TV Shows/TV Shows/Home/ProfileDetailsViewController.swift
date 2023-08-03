@@ -101,7 +101,8 @@ private extension ProfileDetailsViewController {
         if user.imageUrl == nil {
             profileImageView.image = UIImage(named: "ic-profile-placeholder")
         } else {
-            profileImageView.kf.setImage(with: URL(string: user.imageUrl!), placeholder: UIImage(named: "ic-profile-placeholder"))
+            guard let imageUrl = user.imageUrl else { return }
+            profileImageView.kf.setImage(with: URL(string: imageUrl), placeholder: UIImage(named: "ic-profile-placeholder"))
         }
         email.text = user.email
     }
