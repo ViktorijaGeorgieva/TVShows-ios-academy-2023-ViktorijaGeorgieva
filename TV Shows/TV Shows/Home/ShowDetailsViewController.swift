@@ -9,7 +9,7 @@ import UIKit
 import MBProgressHUD
 import Alamofire
 
-final class ShowDetailsViewController: UIViewController, WriteReviewDelegate{
+final class ShowDetailsViewController: UIViewController{
     
     // MARK: - Public Properties
     
@@ -25,7 +25,7 @@ final class ShowDetailsViewController: UIViewController, WriteReviewDelegate{
     private var reviews: [Review] = []
     private var showDetails: ShowResponse?
     
-    //MARK: - Lifecycle methods
+    // MARK: - Lifecycle methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +52,7 @@ final class ShowDetailsViewController: UIViewController, WriteReviewDelegate{
         present(navigationController, animated: true)
     }
     
-    //MARK: - Utility methods
+    // MARK: - Utility methods
     
     private func getShowDetails(id: String, authInfo: AuthInfo) {
         MBProgressHUD.showAdded(to: view, animated: true)
@@ -96,12 +96,6 @@ final class ShowDetailsViewController: UIViewController, WriteReviewDelegate{
                 }
             }
     }
-    
-    func didAddReview(review: Review) {
-        reviews.append(review)
-        tableView.reloadData()
-    }
-    
 }
 
 extension ShowDetailsViewController: UITableViewDataSource {
@@ -128,6 +122,13 @@ extension ShowDetailsViewController: UITableViewDataSource {
             cell.configure(with: reviews[indexPath.row-1])
             return cell
         }
+    }
+}
+
+extension ShowDetailsViewController: WriteReviewDelegate {
+    func didAddReview(review: Review) {
+        reviews.append(review)
+        tableView.reloadData()
     }
 }
 

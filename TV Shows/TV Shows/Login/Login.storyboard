@@ -11,7 +11,7 @@
         <!--Login View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController id="Y6W-OH-hqX" customClass="LoginViewController" customModule="TV_Shows" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="Y6W-OH-hqX" customClass="LoginViewController" customModule="TV_Shows" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -169,6 +169,7 @@
                     <navigationItem key="navigationItem" id="zY0-WB-R4h"/>
                     <connections>
                         <outlet property="emailTextField" destination="pAA-q2-bCc" id="FD3-cp-llE"/>
+                        <outlet property="logoImageView" destination="2Fn-JY-obU" id="EAx-M6-BIa"/>
                         <outlet property="passwordTextField" destination="Pac-Q8-aVr" id="17h-jD-a8f"/>
                         <outlet property="rememberMeCheckboxButton" destination="Jgb-3N-3Si" id="Sdg-Ac-cWp"/>
                         <outlet property="showPasswordButton" destination="SI2-Jg-DQJ" id="i3e-H6-SGw"/>

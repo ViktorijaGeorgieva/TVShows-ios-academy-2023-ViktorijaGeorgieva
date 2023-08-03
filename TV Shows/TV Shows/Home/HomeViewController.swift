@@ -11,22 +11,22 @@ import Alamofire
 
 final class HomeViewController : UIViewController {
     
-    //MARK: - Public properties
+    // MARK: - Public properties
     
     var userResponse: UserResponse?
     var authInfo: AuthInfo?
     var currentPage = 1
     let itemsPerPage = 20
     
-    //MARK: - Outlets
+    // MARK: - Outlets
     
     @IBOutlet private weak var tableView: UITableView!
-    
-    //MARK: - Private properties
+
+    // MARK: - Private properties
     
     private var shows: [Show] = []
     
-    //MARK: - Lifecycle methods
+    // MARK: - Lifecycle methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +36,7 @@ final class HomeViewController : UIViewController {
         setupTableView()
     }
     
-    //MARK: - Utility methods
+    // MARK: - Utility methods
     
     private func getShows() {
         guard let authInfo = authInfo else {

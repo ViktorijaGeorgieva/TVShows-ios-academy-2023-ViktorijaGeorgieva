@@ -24,7 +24,7 @@ final class WriteReviewViewController: UIViewController {
     @IBOutlet private weak var ratingView: RatingView!
     @IBOutlet private weak var commentTextField: UITextField!
     
-    //MARK: - Lifecycle methods
+    // MARK: - Lifecycle methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
