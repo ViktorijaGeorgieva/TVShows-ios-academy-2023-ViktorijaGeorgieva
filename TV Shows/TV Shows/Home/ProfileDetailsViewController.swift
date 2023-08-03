@@ -65,18 +65,18 @@ private extension ProfileDetailsViewController {
     
     // MARK: - Utility methods
     
-    @objc private func closeButtonPressed() {
+    @objc func closeButtonPressed() {
         dismiss(animated: true, completion: nil)
     }
     
-    private func setUpNavigationBar() {
+    func setUpNavigationBar() {
         let closeButton = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(closeButtonPressed))
         closeButton.tintColor = UIColor(red: 82/255.0, green: 54/255.0, blue: 140/255.0, alpha: 1)
         navigationItem.leftBarButtonItem = closeButton
         navigationItem.title = "My Account"
     }
     
-    private func getUserInfo() {
+    func getUserInfo() {
         guard let authInfo = authInfo else {
             return
         }
@@ -97,24 +97,20 @@ private extension ProfileDetailsViewController {
                 }}
     }
     
-    private func updateUI(with user: User) {
-        if user.imageUrl == nil {
-            profileImageView.image = UIImage(named: "ic-profile-placeholder")
-        } else {
-            guard let imageUrl = user.imageUrl else { return }
-            profileImageView.kf.setImage(with: URL(string: imageUrl), placeholder: UIImage(named: "ic-profile-placeholder"))
-        }
+    func updateUI(with user: User) {
         email.text = user.email
+        guard let imageUrl = user.imageUrl else { return profileImageView.image = UIImage(named: "ic-profile-placeholder") }
+        profileImageView.kf.setImage(with: URL(string: imageUrl), placeholder: UIImage(named: "ic-profile-placeholder"))
     }
     
-    private func openPhotoGallery() {
+    func openPhotoGallery() {
         let imagePickerController = UIImagePickerController()
         imagePickerController.sourceType = .photoLibrary
         imagePickerController.delegate = self
         present(imagePickerController, animated: true, completion: nil)
     }
     
-    private func storeImage(_ image: UIImage) {
+    func storeImage(_ image: UIImage) {
         guard let imageData = image.jpegData(compressionQuality: 0.9) else { return }
         let requestData = MultipartFormData()
         guard let authInfo = authInfo else {
